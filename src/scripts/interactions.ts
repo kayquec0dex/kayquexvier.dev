@@ -96,6 +96,33 @@ const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
 const scrollSections = document.querySelectorAll<HTMLElement>("[data-scroll-section]");
 const navLinks = document.querySelectorAll<HTMLAnchorElement>(".site-nav .nav-link");
 
+document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event: MouseEvent) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) return;
+
+    const targetId = link.getAttribute("href")?.slice(1);
+    if (!targetId) return;
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: motionReduced ? "auto" : "smooth", block: "start" });
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
+  });
+});
+
 document.documentElement.classList.add("has-reveal");
 
 function updateScrollState(): void {
