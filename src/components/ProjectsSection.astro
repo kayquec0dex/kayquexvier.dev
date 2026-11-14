@@ -1,0 +1,82 @@
+---
+import { projects } from "../data/projects";
+---
+
+<section
+  class="projects-section section-pad"
+  id="projetos"
+  data-scroll-section
+  aria-labelledby="projects-title"
+>
+  <div class="section-heading" data-reveal>
+    <div>
+      <p class="eyebrow">PORTFÓLIO / PROJETOS PÚBLICOS</p>
+      <h2 id="projects-title">Projetos públicos<span class="accent">.</span></h2>
+    </div>
+    <p class="section-intro">
+      Um espaço para projetos com contexto, tecnologias, demonstrações e código.
+    </p>
+  </div>
+
+  {projects.length > 0 ? (
+    <div class="project-grid">
+      {projects.map((project) => (
+        <article class="project-card" data-reveal data-tilt>
+          <div class="project-link">
+            <div class="project-visual">
+              {project.image ? (
+                <img
+                  class="project-image"
+                  src={project.image}
+                  alt={`Captura de tela de ${project.title}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <span class="project-image-placeholder">{project.title}</span>
+              )}
+            </div>
+            <div class="project-meta">
+              <div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+              </div>
+            </div>
+            <ul class="project-tech-list" aria-label={`Tecnologias de ${project.title}`}>
+              {project.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+            {(project.demoUrl || project.repositoryUrl) && (
+              <div class="project-actions">
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver demonstração de ${project.title}`}
+                  >
+                    Ver demonstração <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+                {project.repositoryUrl && (
+                  <a
+                    href={project.repositoryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver código de ${project.title}`}
+                  >
+                    Ver código <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <div class="projects-empty" data-reveal>
+      <span class="projects-empty-label">NOVOS PROJETOS · EM BREVE</span>
+      <p>Estou preparando projetos públicos para compartilhar por aqui.</p>
+    </div>
+  )}
+</section>

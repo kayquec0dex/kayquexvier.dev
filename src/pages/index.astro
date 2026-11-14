@@ -1,0 +1,28 @@
+---
+import AboutSection from "../components/AboutSection.astro";
+import ContactSection from "../components/ContactSection.astro";
+import ExpertiseSection from "../components/ExpertiseSection.astro";
+import Hero from "../components/Hero.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import PreferenceControls from "../components/PreferenceControls.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div
+    class="page-frame mx-auto mt-9 w-[calc(100%-72px)] max-w-[1600px] border border-[var(--line)] max-[760px]:mt-[14px] max-[760px]:w-[calc(100%-28px)]"
+  >
+    <SiteHeader />
+    <PreferenceControls />
+    <main class="min-w-0">
+      <Hero />
+      <ProjectsSection />
+      <ExpertiseSection />
+      <AboutSection />
+      <ContactSection />
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>

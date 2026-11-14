@@ -1,0 +1,94 @@
+---
+interface Specialty {
+  number: string;
+  variant: "orbit" | "shape" | "lines";
+  label: string;
+  title: string;
+  description: string;
+  tags: string;
+}
+
+const specialties: Specialty[] = [
+  {
+    number: "01",
+    variant: "orbit",
+    label: "DESENVOLVIMENTO / FULL STACK",
+    title: "Aplicações full stack",
+    description: "JavaScript, TypeScript e SQL para construir soluções do backend à interface.",
+    tags: "JS · TS · SQL",
+  },
+  {
+    number: "02",
+    variant: "shape",
+    label: "INTELIGÊNCIA ARTIFICIAL",
+    title: "IA aplicada",
+    description: "Integrações com IA, engenharia de prompts e observabilidade com logs e monitoramento.",
+    tags: "IA · CLOUD",
+  },
+  {
+    number: "03",
+    variant: "lines",
+    label: "QUALIDADE / ESCALABILIDADE",
+    title: "Sistemas confiáveis",
+    description: "Testes unitários e de integração, escalabilidade e manutenção contínua.",
+    tags: "TESTES · ESCALA",
+  },
+];
+---
+
+<section
+  class="work-section section-pad"
+  id="especialidades"
+  data-scroll-section
+  aria-labelledby="expertise-title"
+>
+  <div class="section-heading" data-reveal>
+    <div>
+      <p class="eyebrow">TECNOLOGIAS / PRÁTICAS</p>
+      <h2 id="expertise-title">Onde posso contribuir<span class="accent">.</span></h2>
+    </div>
+    <p class="section-intro">
+      Minhas principais frentes de atuação combinam desenvolvimento full stack,
+      inteligência artificial aplicada e qualidade de sistemas.
+    </p>
+  </div>
+
+  <div class="project-grid">
+    {specialties.map((specialty, index) => (
+      <article
+        class:list={["project-card", index === 0 && "project-card-wide"]}
+        data-reveal
+        data-tilt
+      >
+        <div class="project-link">
+          <div class:list={["project-visual", `visual-${specialty.variant}`]} aria-hidden="true">
+            {specialty.variant === "orbit" && (
+              <>
+                <span class="visual-word">{specialty.number}</span>
+                <span class="visual-ring"></span>
+              </>
+            )}
+            {specialty.variant === "shape" && (
+              <>
+                <span class="shape-block"></span>
+                <span class="shape-circle"></span>
+              </>
+            )}
+            {specialty.variant === "lines" && <span class="line-art">↗</span>}
+            <span class="visual-label">{specialty.label}</span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <h3>{specialty.title}</h3>
+              <p>{specialty.description}</p>
+            </div>
+            <span class="project-type">{specialty.tags}</span>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p class="placeholder-note" data-reveal>
+    Experiência em projetos corporativos, preservando a confidencialidade dos clientes.
+  </p>
+</section>
